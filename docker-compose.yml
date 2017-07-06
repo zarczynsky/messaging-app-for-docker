@@ -1,0 +1,21 @@
+version: '2'
+services:
+  tcp_server:
+    build: server
+    volumes:
+     - .:/code
+  tcp_client:
+    build: client
+    depends_on:
+      - "tcp_server"
+    command: sh -c './code/wait.sh tcp_server:6969 -- echo READY && node ./code/client.js'
+    volumes:
+     - .:/code
+
+
+
+
+
+    # command: sh -c 'sleep 2 && node ./code/client.js'
+
+       # command: sh -c './code/wait.sh tcp_server:6969 -- echo working'
