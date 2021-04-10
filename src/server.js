@@ -1,12 +1,8 @@
 var net = require('net');
 
-// var HOST = '127.0.0.1';
-var HOST = 'tcp_server';
-var PORT = 6969;
+var HOST = 'app_server';
+var PORT = 8081;
 
-// Create a server instance, and chain the listen function to it
-// The function passed to net.createServer() becomes the event handler for the 'connection' event
-// The sock object the callback function receives UNIQUE for each connection
 net.createServer(function(sock) {
 
     // We have a connection - a socket object is assigned to the connection automatically
@@ -17,7 +13,7 @@ net.createServer(function(sock) {
 
         console.log('DATA ' + sock.remoteAddress + ': ' + data);
         // Write the data back to the socket, the client will receive it as data from the server
-        sock.write('You said "' + data + '"');
+        sock.write('OCZYT DANYCH:     \n\n "' + data + '"\n\n');
 
     });
 

@@ -1,7 +1,15 @@
 FROM node:alpine
-ADD . /code
-WORKDIR /code
-# RUN pip install -r requirements.txt
-# CMD ["node", "code/app.js"]
-CMD node  code/client.js
-# CMD node app.js
+
+ADD . /src
+WORKDIR /src
+
+RUN apk update
+RUN npm install -y --no-install-recommneds git
+
+COPY --chown=node:node . .
+
+CMD ["node", "src/app.js"]
+CMD node src/client.js
+CMD node app.js
+
+
