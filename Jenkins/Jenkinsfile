@@ -1,0 +1,42 @@
+pipeline {
+
+agent docker {
+
+}
+
+stages {
+	 stage('Build') {
+	  steps {
+	   echo 'Building.'
+	   	sh 'npm --version'
+	   	sh 'git clone https://github.com/KamilaNowak/messaging-app-for-docker
+	   	sh 'docker-compose up -d'
+	   	
+	   }
+	}
+	 stage('Test') {
+	  steps {
+	   	sh 'tests.sh'
+	   }
+	}
+    }
+    post {
+        failure {
+            echo 'Success'
+            emailext attachLog: true,
+                body: "Build failed.",
+                recipientProviders: [developers(), requestor()],
+                to: 'knowak242@gmail.com',
+                subject: "Build failed in Jenkins"
+        }
+        success {
+            echo 'Fail'
+            emailext attachLog: true,
+                body: "Build successfull.",
+                recipientProviders: [developers(), requestor()],
+                to: 'knowak242@gmail.com',
+                subject: "Successful build in Jenkins"
+        }
+    }
+}
+
