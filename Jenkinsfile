@@ -12,7 +12,7 @@ stages {
 	}
 	 stage('Test') {
 	  steps {
-	   	sh 'tests.sh'
+	   	sh './tests.sh'
 	   }
 	}
     }
