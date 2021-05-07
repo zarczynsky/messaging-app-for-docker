@@ -1,39 +1,49 @@
 pipeline {
 
-agent any
+agent dany
 
 stages {
 	 stage('Build') {
 	  steps {
 	   echo 'Building.'
-
-	   	
+	   	sh 'npm --version'
+	   	sh 'git clone https://github.com/KamilaNowak/messaging-app-for-docker
+	   	sh 'docker-compose up -d'	
 	   }
+	   post {
+		failure {
+		   	sendEmailAfter('Build failed')
+        	}
+       	 	success {
+           		sendEmailAfter('Build successful')
+       	 }
+   	    }
 	}
-	 stage('Test') {
-	  steps {
-	        sh "chmod +x -R ${env.WORKSPACE}"
+	  stage('Test') {
+	   steps {
+	  	echo 'Testing stage.'
+	   	sh "chmod +x -R ${env.WORKSPACE}"
 	   	sh './tests.sh'
 	   }
+	   post {
+        	 failure {
+          		sendEmailAfter('Tests failed')
+        	}
+        	success {
+            		sendEmailAfter('Tests successful')
+       	 }
+   	    }
 	}
     }
-    post {
-        failure {
-            echo 'Success'
-            emailext attachLog: true,
-                body: "Build failed.",
-                recipientProviders: [developers(), requestor()],
-                to: 'knowak242@gmail.com',
-                subject: "Build failed in Jenkins"
-        }
-        success {
-            echo 'Fail'
-            emailext attachLog: true,
-                body: "Build successfull.",
-                recipientProviders: [developers(), requestor()],
-                to: 'knowak242@gmail.com',
-                subject: "Successful build in Jenkins"
-        }
-    }
 }
+
+def sendEmailAfter(status){
+ 	echo status
+            emailext attachLog: true,
+                body: status,
+                recipientProviders: [developers(), requestor()],
+                to: 'knowak242@gmail.com',
+                subject: "Jenkins stage status"
+}
+
 
