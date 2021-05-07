@@ -1,6 +1,6 @@
 pipeline {
 
-agent dany
+agent any
 
 stages {
 	 stage('Build') {
