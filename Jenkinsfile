@@ -6,6 +6,7 @@ stages {
 	 stage('Build') {
 	  steps {
 	   echo 'Building.'
+		sh 'npm install'
 	   	sh 'npm --version'
 	   	sh 'git clone https://github.com/KamilaNowak/messaging-app-for-docker'
 	   	sh 'docker-compose up -d'	
