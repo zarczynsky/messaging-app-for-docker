@@ -9,7 +9,7 @@ stages {
 	  steps {
 	   echo 'Building.'
 	   	sh 'npm --version'
-	   	sh 'git clone https://github.com/KamilaNowak/messaging-app-for-docker
+	   	sh 'git clone https://github.com/KamilaNowak/messaging-app-for-docker'
 	   	sh 'docker-compose up -d'
 	   	
 	   }
