@@ -7,7 +7,6 @@ stages {
 	 stage('Build') {
 	  steps {
 	   echo 'Building.'
-	   	sh 'git clone https://github.com/KamilaNowak/messaging-app-for-docker'
 	   	sh 'docker-compose up -d'	
 	   }
 	   post {
