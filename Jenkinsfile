@@ -8,7 +8,6 @@ stages {
 	 stage('Build') {
 	  steps {
 	   echo 'Building.'
-		sh 'docker–compose –version'
 	   	sh 'docker-compose up -d'	
 	   }
 	   post {
