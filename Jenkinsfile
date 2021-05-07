@@ -8,8 +8,8 @@ stages {
 	 stage('Build') {
 	  steps {
 	   echo 'Building.'
-
-          sh '/usr/local/bin/docker-compose up --build'
+	   curl -L https://github.com/docker/compose/releases/download/1.8.0/docker-compose-`uname -s`-`uname -m` > /usr/local/bin/docker-compose
+           sh '/usr/local/bin/docker-compose up --build'
 	   }
 	   post {
 		failure {
