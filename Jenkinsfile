@@ -1,8 +1,14 @@
 pipeline {
-
+ environment {
+        PATH = "$PATH:	/usr/bin/docker-compose
+    }
 agent { 
 		docker { image 'node:alpine'}
-	}
+	
+
+}
+	
+	/usr/bin/docker-compose
 stages {
 	 stage('Build') {
 	  steps {
