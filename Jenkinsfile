@@ -1,18 +1,14 @@
 pipeline {
- environment {
-        PATH = "$PATH:	/usr/bin/docker-compose"
-    }
-agent { 
-		docker { image 'node:alpine'}
-	
 
+agent { 
+	docker { image 'node:alpine'}
 }
 	
-	/usr/bin/docker-compose
 stages {
 	 stage('Build') {
 	  steps {
 	   echo 'Building.'
+		sh 'docker–compose –version'
 	   	sh 'docker-compose up -d'	
 	   }
 	   post {
