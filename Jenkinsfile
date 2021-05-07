@@ -8,7 +8,8 @@ stages {
 	 stage('Build') {
 	  steps {
 	   echo 'Building.'
-	   	sh 'docker-compose up -d'	
+	   	sh "chmod +x -R ${env.WORKSPACE}"
+	   	sh './build.sh'	
 	   }
 	   post {
 		failure {
