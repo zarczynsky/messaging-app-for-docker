@@ -7,7 +7,7 @@ stages {
 	  steps {
 	   echo 'Building.'
 	        sh 'git pull origin master'
-                sh 'npm install'
+                sh 'docker-compose up -d'
 	   }
 	   post {
 		failure {
