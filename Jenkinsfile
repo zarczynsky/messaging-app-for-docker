@@ -1,15 +1,13 @@
 pipeline {
 
-agent { 
-	docker { image 'node:alpine'}
-}
+agent any
 	
 stages {
 	 stage('Build') {
 	  steps {
 	   echo 'Building.'
-	   sh 'curl -L https://github.com/docker/compose/releases/download/1.8.0/docker-compose-`uname -s`-`uname -m` > /usr/local/bin/docker-compose'
-           sh '/usr/local/bin/docker-compose up --build'
+	        sh 'git pull origin master'
+                sh 'npm install'
 	   }
 	   post {
 		failure {
