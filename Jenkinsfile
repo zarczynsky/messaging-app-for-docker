@@ -22,7 +22,7 @@ stages {
 	}
 	  stage('Test') {
 	   steps {
-	  	echo 'Testing stage.'
+
 	   	sh "chmod +x -R ${env.WORKSPACE}"
 	   	sh './tests.sh'
 	   }
